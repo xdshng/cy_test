@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>词语分类任务</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .word {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .word.selected {
+            background: #a0d8ef;
+        }
+        .category {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            min-height: 50px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>词语分类任务</h2>
+    <p>请点击词语将其选中，然后点击下方区域进行分类：</p >
+    
+    <div id="word-container">
+        <!-- 所有词语会在这里动态生成 -->
+    </div>
+    
+    <div>
+        <button onclick="addCategory()">添加新分类</button>
+        <button onclick="submitResults()">完成分类</button>
+    </div>
+    
+    <div id="category-container">
+        <!-- 分类区域会在这里动态生成 -->
+    </div>
+    
+    <div id="result" style="margin-top: 30px; display: none;">
+        <h3>你的分类结果：</h3>
+        <p id="category-count"></p >
+        <div id="category-details"></div>
+    </div>
+
+    <script>
+        // 所有词语
+        const words = [
+            "苹果", "杯子", "电影", "桌子",
+            "手表", "手机", "房子",
+            "手提包", "名片", "肥皂",
+            "网球", "头发", "汽车", "水壶",
+            "温度计", "自行车", "牙刷",
+            "钥匙", "泳衣", "奶酪"
+        ];
+        
+        // 当前选中的词语
+        let selectedWords = [];
+        
+        // 初始化词语显示
+        function initWords() {
+            const container = document.getElementById("word-container");
+            words.forEach(word => {
+    
